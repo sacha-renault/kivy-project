@@ -1,0 +1,9 @@
+<TemplateComponent>:
+    size_hint: None, None
+    size: 200, 100
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 1  # Default to a gray color
+        Rectangle:
+            pos: self.pos
+            size: self.size
