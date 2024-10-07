@@ -1,4 +1,4 @@
-from src import App
+from src import KivyApp
 
 if __name__ == "__main__":
-    App().run()
+    KivyApp().run()

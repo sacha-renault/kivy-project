@@ -2,11 +2,11 @@ from kivy.event import EventDispatcher
 from kivy.properties import (
     StringProperty, NumericProperty, BooleanProperty,
     ListProperty, DictProperty, ObjectProperty,
-    FloatProperty, IntProperty, OptionProperty
+    OptionProperty
 )
 
 class TemplateModel(EventDispatcher): 
-    pass
+    string_property = StringProperty("Default String")
     # chose which property to use
     # string_property = StringProperty("Default String")
     # numeric_property = NumericProperty(0)

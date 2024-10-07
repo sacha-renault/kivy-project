@@ -2,7 +2,10 @@ from kivy.app import App
 
 # import controller here
 
-class MyApp(App):
+class KivyApp(App):
     def build(self):
-        self.controller = Controller()
-        return self.controller.get_view()
+        pass
+        # controller = ControllerClass()
+        # return controller.get_view()
+            
+        

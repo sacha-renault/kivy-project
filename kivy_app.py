@@ -6,7 +6,7 @@ import re
 # Define the paths to the templates and target directories
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(BASE_DIR, "src")
-TEMPLATE_DIR = os.path.join(BASE_DIR, "_templates", "src")
+TEMPLATE_DIR = os.path.join(BASE_DIR, "_templates")
 
 CONTROLLERS_DIR = os.path.join(SRC_DIR, "controllers")
 MODELS_DIR = os.path.join(SRC_DIR, "models")
@@ -26,7 +26,7 @@ def copy_and_rename_template(module_name):
 
     # Define template paths
     template_controller = os.path.join(TEMPLATE_DIR, "controller.py")
-    template_model = os.path.join(TEMPLATE_DIR,"model.py")
+    template_model = os.path.join(TEMPLATE_DIR, "model.py")
     template_view = os.path.join(TEMPLATE_DIR, "view.kv")
 
     # Define target paths
@@ -39,9 +39,13 @@ def copy_and_rename_template(module_name):
         shutil.copy(template_controller, target_controller)
         with open(target_controller, 'r') as file:
             content = file.read()
-        content = content.replace("TemplateController", f"{module_pascal_case}Controller") \
+        # Replace class names and import statements
+        content = content.replace("src/views/template_view.kv", f"src/views/{module_snake_case}_view.kv") \
+                         .replace("TemplateController", f"{module_pascal_case}Controller") \
                          .replace("TemplateView", f"{module_pascal_case}View") \
-                         .replace("TemplateModel", f"{module_pascal_case}Model")
+                         .replace("TemplateModel", f"{module_pascal_case}Model") \
+                         .replace("from src.models.template_model import",
+                                  f"from src.models.{module_snake_case}_model import")
         with open(target_controller, 'w') as file:
             file.write(content)
         print(f"Controller template copied to {target_controller}")
